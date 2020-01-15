@@ -13,7 +13,6 @@
     <template v-else>
       <ul
         class="tree-root"
-        @dragstart="onDragStart"
       >
         <template v-if="opts.filter.plainList && matches.length > 0">
           <TreeNode
@@ -33,19 +32,12 @@
         </template>
       </ul>
     </template>
-
-    <DraggableNode
-      v-if="draggableNode"
-      :target="draggableNode"
-    />
   </component>
 </template>
 
 <script>
   import TreeNode from './TreeNode.vue'
-  import DraggableNode from './DraggableNode.vue'
   import TreeMixin from '../mixins/TreeMixin.js'
-  import TreeDnd from '../mixins/DndMixin.js'
   import Tree from '../lib/Tree.js'
 
   const defaults = {
@@ -88,11 +80,10 @@
   export default {
     name: 'Tree',
     components: {
-      TreeNode,
-      DraggableNode
+      TreeNode
     },
 
-    mixins: [TreeMixin, TreeDnd],
+    mixins: [TreeMixin],
 
     provide: _ => ({
       tree: null
@@ -140,7 +131,7 @@
       visibleModel() {
         return this.model.filter(function(node) {
           return node && node.visible()
-        }) 
+        })
       },
       visibleMatches() {
         return this.matches.filter(function(node) {
@@ -148,7 +139,7 @@
         })
       }
     },
-    
+
     watch: {
       filter (term) {
         this.tree.filter(term)

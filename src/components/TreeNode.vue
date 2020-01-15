@@ -4,7 +4,6 @@
     class="tree-node"
     :data-id="node.id"
     :class="nodeClass"
-    @mousedown.stop="handleMouseDown"
   >
     <div
       class="tree-content"
@@ -201,14 +200,6 @@
       stopEditing() {
         this.node.stopEditing()
       },
-
-      handleMouseDown(event) {
-        if (!this.options.dnd) {
-          return
-        }
-
-        this.tree.vm.startDragging(this.node, event)
-      }
     }
   }
 

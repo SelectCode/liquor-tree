@@ -1,5 +1,5 @@
 {
-  "name": "liquor-tree",
+  "name": "liquor-tree-withoutdragndrop",
   "description": "A Vue.js tree component.",
   "version": "0.2.70",
   "author": "Kostiantyn <phlyze@gmail.com>",
